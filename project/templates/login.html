@@ -1,14 +1,43 @@
 {% extends "_base.html" %}
 {% block content %}
 
-  <div class="main-login-content">
-	  <div> 
-		  <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Logo4linux.png" class="" /> 
-	  </div>
+  <div class="modal-dialog">
 
-	  <form>
-			
-	  </form>
+
+    <div class="modal-content col-sm-12 text-center">
+	    <div class="login-logo col-12">
+	  	  <img src="https://2via.4linux.com.br/image/logo.png"/>
+	    </div>
+
+
+      <form action="/" class="col-12" method="post">
+          {{ form.csrf_token }}
+          <div class="form-group">
+            <!-- <input type="text" name="username" class="form-control" placeholder="Enter Username" value="{{ request.form.username }}" > -->
+            {{ form.name(placeholder="Username")}}
+            {% if form.name.errors %}
+            <div class="alert alert-danger">
+              {% for error in form.name.errors %}
+                {{error}}
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <!-- <input type="password" name="password" class="form-control" placeholder="Enter Password" value="{{ request.form.password }}"> -->
+            {{ form.password(placeholder="Password" )}}
+            {% if form.password.errors %}
+            <div class="alert alert-danger">
+              {% for error in form.password.errors %}
+                {{error}}
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <button class="btn btn-primary" value="Login" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+      </form>
+
+    </div>
   </div>
 
 {% endblock %}
