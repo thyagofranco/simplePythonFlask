@@ -1,0 +1,2 @@
+WTF_CSRF_ENABLED = True
+SECRET_KEY = b'emeW7Bb48Wai6SIiVIorvn+SsHM='
