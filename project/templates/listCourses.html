@@ -1,50 +1,87 @@
+<nav class="navbar navbar-expand-lg   navbar-light bg-light">
+ <a class="navbar-brand" href="#">
+   <img src="https://2via.4linux.com.br/image/logo.png" width="100" height="30" class="d-inline-block align-top" alt=""></img>
+ </a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+   <div class="navbar-nav">
+     <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+     <a class="nav-item nav-link" href="#">Features</a>
+     <a class="nav-item nav-link" href="#">Pricing</a>
+     <a class="nav-item nav-link disabled" href="#">Disabled</a>
+   </div>
+ </div>
+
+ <form class="form-inline" action="#" method="post">
+   <input class="form-control mr-sm-2" type="search" placeholder="Buscar curso" aria-lable="Buscar" name="" value="">
+   <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="button">Buscar</button>
+ </form>
+</nav>
+
+
 {% extends "_base.html" %}
 {% block content %}
 
-  <div class="card-columns courses-list">
-          <div class="card" style="width: 15rem;">
-            <img class="card-img-top" src="static/images/courses-linux-thumbnail.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Linux System Administration</h5>
-              <!-- <p class="card-text">Segundo curso da Nova Formação Linux,
-              onde o aluno aprenderá como administrar o sistema Linux,
-              trabalhando na linha de comando com Shell Script e banco de dados,
-               além do gerenciamento de pacotes, processos, redes, usuários,
-                servidor NTP e Logs com soluções de Cloud Computing e Container com Docker.</p> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><span class="fa fa-id-card-o"></span>  Júlio Ballot</li>
-              <li class="list-group-item"><span class="fa fa-clock-o"></span>  40h</li>
-              <li class="list-group-item"><span class="fa fa-calendar"></span>  10/10/2020 - 14/10/2020</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Ementa</a>
-              <a href="#" class="card-link">Contato</a>
-            </div>
-          </div>
 
-          <div class="card" style="width: 15rem;">
-            <img class="card-img-top" src="static/images/courses-devops-thumbnail.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">CI/CD - Integração e Entrega Contínua</h5>
-              <!-- <p class="card-text">Durante todo o curso o aluno irá executar de forma prática todas as etapas
-                 e boas práticas que um desenvolvedor precisa realizar para ser parte integrante de um time de
-                 desenvolvimento promovendo um ambiente de colaboração dentro de um projeto de software. </p> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><span class="fa fa-id-card-o"></span>  Júlio Ballot</li>
-              <li class="list-group-item"><span class="fa fa-clock-o"></span>  24h</li>
-              <li class="list-group-item"><span class="fa fa-calendar"></span>  14/09/2020 -16/09/2020</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Ementa</a>
-              <a href="#" class="card-link">Contato</a>
-            </div>
-          </div>
+  <div class="card-columns courses-list text-center">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="static/images/courses-linux-thumbnail.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Linux System Administration</h5>
+        <!-- <p class="card-text">Segundo curso da Nova Formação Linux,
+        onde o aluno aprenderá como administrar o sistema Linux,
+        trabalhando na linha de comando com Shell Script e banco de dados,
+        além do gerenciamento de pacotes, processos, redes, usuários,
+          servidor NTP e Logs com soluções de Cloud Computing e Container com Docker.</p> -->
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><span class="fa fa-id-card-o"></span>  Hector Vido</li>
+        <li class="list-group-item"><span class="fa fa-clock-o"></span>  40h</li>
+        <li class="list-group-item"><span class="fa fa-calendar"></span>  10/10/2020 - 14/10/2020</li>
+      </ul>
+      <div class="card-body">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Ementa</button>
+        <button class="btn btn-success">Iniciar</button>
+      </div>
+    </div>
 
-
-
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="static/images/courses-devops-thumbnail.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">CI/CD - Integração e Entrega Contínua</h5>
+          <!-- <p class="card-text">Durante todo o curso o aluno irá executar de forma prática todas as etapas
+          e boas práticas que um desenvolvedor precisa realizar para ser parte integrante de um time de
+          desenvolvimento promovendo um ambiente de colaboração dentro de um projeto de software. </p> -->
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><span class="fa fa-id-card-o"></span>  Júlio Ballot</li>
+          <li class="list-group-item"><span class="fa fa-clock-o"></span>  24h</li>
+          <li class="list-group-item"><span class="fa fa-calendar"></span>  14/09/2020 -16/09/2020</li>
+        </ul>
+        <div class="card-body">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Ementa</button>
+          <button class="btn btn-success">Iniciar</button>
+        </div>
+      </div>
   </div> <!-- Ending courses-list content -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Linux System Administration</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h2>&#x000A;<a id="conteúdo-programático" class="anchor" href="#conte%C3%BAdo-program%C3%A1tico" aria-hidden="true"></a>Conteúdo Programático</h2>&#x000A;&#x000A;<h3>&#x000A;<a id="definições" class="anchor" href="#defini%C3%A7%C3%B5es" aria-hidden="true"></a>Definições</h3>&#x000A;&#x000A;<ul>&#x000A;<li>O que é DevOps?</li>&#x000A;<li>O que é Integração Contínua?</li>&#x000A;<li>O que é Entrega Contínua?</li>&#x000A;</ul>&#x000A;&#x000A;<h3>&#x000A;<a id="desenvolvimento-Ágil" class="anchor" href="#desenvolvimento-%C3%81gil" aria-hidden="true"></a>Desenvolvimento Ágil</h3>&#x000A;&#x000A;<ul>&#x000A;<li>Conceito</li>&#x000A;<li>Princípio INVEST</li>&#x000A;<li>Relação do desenvolvimento ágil com integração contínua</li>&#x000A;</ul>&#x000A;&#x000A;<h3>&#x000A;<a id="git-e-gitlab" class="anchor" href="#git-e-gitlab" aria-hidden="true"></a>Git e Gitlab</h3>&#x000A;&#x000A;<ul>&#x000A;<li>História do Git</li>&#x000A;<li>Vantagens em sua utilização</li>&#x000A;<li>Criando um repositório Git</li>&#x000A;<li>Realizando commits</li>&#x000A;<li>Estratégia de Branchs com base no ciclo de desenvolvimento</li>&#x000A;<li>Criação de tags</li>&#x000A;<li>Git checkout e Git reset</li>&#x000A;<li>Realizando merge (merge, rebase e cherry-pick)</li>&#x000A;<li>Resolvendo conflitos</li>&#x000A;<li>Push e Pull para repositórios remotos</li>&#x000A;<li>Entendo e utilizando o .gitignore</li>&#x000A;<li>Hooks e Webhooks</li>&#x000A;<li>Instalação do Gitlab</li>&#x000A;<li>Funcionalidades do Gitlab</li>&#x000A;<li>Repositórios remotos com Gitlab</li>&#x000A;</ul>&#x000A;&#x000A;<h3>&#x000A;<a id="testes-automatizados" class="anchor" href="#testes-automatizados" aria-hidden="true"></a>Testes Automatizados</h3>&#x000A;&#x000A;<ul>&#x000A;<li>Importância dos testes automatizados na cultura DevOps</li>&#x000A;<li>Testes Unitários</li>&#x000A;<li>Testes de Integração</li>&#x000A;<li>Testes de Aceitação Automatizados</li>&#x000A;</ul>&#x000A;&#x000A;<h3>&#x000A;<a id="continuos-integration-ci-e-continuos-delivery-cd" class="anchor" href="#continuos-integration-ci-e-continuos-delivery-cd" aria-hidden="true"></a>Continuos Integration (CI) e Continuos Delivery (CD)</h3>&#x000A;&#x000A;<ul>&#x000A;<li>O servidor Jenkins</li>&#x000A;<li>O que é?</li>&#x000A;<li>Vantagens</li>&#x000A;<li>Plataformas suportadas</li>&#x000A;<li>Instalação e Ambientação</li>&#x000A;<li>Criando primeiro Job/Item</li>&#x000A;<li>Tipos de Jobs/Items&#x000A;&#x000A;<ul>&#x000A;<li>Pipeline</li>&#x000A;<li>Multibranch Pipeline</li>&#x000A;</ul>&#x000A;</li>&#x000A;<li>Utilização de plugins</li>&#x000A;<li>Integração com Git e Gogs</li>&#x000A;<li>Integração com Maven</li>&#x000A;<li>Integração com Sonatype Nexus</li>&#x000A;<li>Armazenamento de artefatos como parte do fluxo de desenvolvimento</li>&#x000A;<li>Integração com SonarQube</li>&#x000A;<li>Inspeção de código como parte do fluxo de desenvolvimento</li>&#x000A;<li>Configuração de notificações</li>&#x000A;<li>Feedback contínuo</li>&#x000A;<li>Deploy contínuo</li>&#x000A;<li>Boas práticas de integração contínua</li>&#x000A;<li>Criação de Jobs</li>&#x000A;<li>Integração contínua na prática</li>&#x000A;<li>Corrigindo erros na build</li>&#x000A;<li>Deploy contínuo na prática</li>&#x000A;</ul>&#x000A;&#x000A;<h3>&#x000A;<a id="sonarqube" class="anchor" href="#sonarqube" aria-hidden="true"></a>SonarQube</h3>&#x000A;&#x000A;<ul>&#x000A;<li>Introdução</li>&#x000A;<li>Pré-requisitos</li>&#x000A;<li>Integração com Maven</li>&#x000A;<li>Integração com Jenkins</li>&#x000A;<li>Como utilizar em projetos que não são baseados no Maven</li>&#x000A;<li>Entendendo seu conceito de regras</li>&#x000A;<li>Corrigindo Bugs</li>&#x000A;<li>Melhoria contínua de código</li>&#x000A;<li>Teste de qualidade</li>&#x000A;</ul>&#x000A;&#x000A;<h3>&#x000A;<a id="sonatype-nexus" class="anchor" href="#sonatype-nexus" aria-hidden="true"></a>Sonatype Nexus</h3>&#x000A;&#x000A;<ul>&#x000A;<li>Porque utilizar?</li>&#x000A;<li>Instalação</li>&#x000A;<li>Linguagens e plataformas suportadas</li>&#x000A;<li>Entendendo repositórios, blobs (Novo)</li>&#x000A;<li>Entendendo permissões, roles e usuários (Novo)</li>&#x000A;<li>Boas práticas</li>&#x000A;</ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

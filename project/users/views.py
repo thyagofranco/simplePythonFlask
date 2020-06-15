@@ -17,10 +17,9 @@ def login():
             print(request.form['password'])
 
             if request.form['name'] == "julio" and request.form['password'] == 'qwe123qwe':
-                flash('Welcome!!!')
+                flash('Bem vindo ao Painel de Cursos!!!')
                 return redirect(url_for('courses.courses'))
             else:
-                print("Error: Invalid user or password!!!")
-                error = "Invalid user or password!!!"
+                error = "Usuário ou senha errada!!!"
 
     return render_template('login.html', form=form, error=error)
