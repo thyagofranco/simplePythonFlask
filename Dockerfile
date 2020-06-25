@@ -2,10 +2,6 @@ FROM alpine:latest
 
 ADD . /
 
-RUN apk add python3 py-pip --no-cache
-
-RUN python3 -m pip install -r requirements.txt
+RUN apk add py3-flask-sqlalchemy py3-flask py3-mysqlclient
 
 EXPOSE 5000
-
-CMD python3 app.py
