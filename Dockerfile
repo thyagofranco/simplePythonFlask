@@ -1,7 +1,13 @@
 FROM alpine:latest
 
-ADD . /
+WORKDIR simplePythonApplication/
 
-RUN apk add py3-flask-sqlalchemy py3-flask py3-mysqlclient
+ADD . /simplePythonApplication/
+
+RUN apk add py3-pip py3-mysqlclient
+
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
+
+CMD python3 app.py
