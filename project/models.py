@@ -1,39 +1,44 @@
-from project import engine, Base
-from sqlalchemy import ForeignKey,Column, Integer,String, Date
-from sqlalchemy.orm import relationship
+from project import db
+import datetime
+#from project import engine, Base
+#from sqlalchemy.ext.declarative import declarative_base
+#from sqlalchemy import ForeignKey,Column, Integer,String, Date
+#from sqlalchemy.orm import relationship
 
-class Courses(Base):
+
+
+class Courses(db.Model):
 
     __tablename__ = "courses"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(length=50), nullable=False)
-    duration = Column(Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(length=50), nullable=False)
+    duration = db.Column(db.Integer, nullable=False)
 
 
     def __init__(self,name=None,duration=None):
         self.name = name
         self.duration = duration
 
-class Instructors(Base):
+class Instructors(db.Model):
 
     __tablename__ = "instructors"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Integer, nullable=False)
 
     def __init__(self,name=None):
         self.name = name
 
-class Classes(Base):
+class Classes(db.Model):
 
     __tablename__ = "classes"
 
-    id = Column(Integer, primary_key=True)
-    instructor_id = Column(Integer, ForeignKey('instructors.id'))
-    users_id = Column(Integer, ForeignKey('users.id'))
-    start_date = Column(Date, nullable=False)
-    end_date = Column(Date, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    instructor_id = db.Column(db.Integer, db.ForeignKey('instructors.id'))
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
 
 
     def __init__(self,instructor=None,start_date=None,end_date=None):
@@ -41,16 +46,16 @@ class Classes(Base):
         self.start_date = start_date
         self.end_date = end_date
 
-class Users(Base):
+class Users(db.Model):
 
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(length=50), unique=True, nullable=False)
-    email = Column(String(length=50), unique=True, nullable=False)
-    password = Column(String(length=50), nullable=False)
-    courses = relationship('Classes')
-    role = Column(String(length=50), default='user')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(length=50), unique=True, nullable=False)
+    email = db.Column(db.String(length=50), unique=True, nullable=False)
+    password = db.Column(db.String(length=50), nullable=False)
+    courses = db.relationship('Classes')
+    role = db.Column(db.String(length=50), default='user')
 
     def __init__(self, name=None, email=None,password=None,role=None):
         self.name = name
