@@ -10,7 +10,7 @@
     </div>
 
 
-    <form action="/" class="col-12" method="post">
+    <form action="/register" class="col-12" method="post">
         {{ form.csrf_token }}
         <div class="form-group">
           {{ form.name(placeholder="Username", class="form-control")}}
@@ -23,7 +23,7 @@
           {% endif %}
         </div>
         <div class="form-group">
-          {{ form.name(placeholder="Email", class="form-control")}}
+          {{ form.email(placeholder="Email", class="form-control")}}
           {% if form.email.errors %}
           <div class="alert alert-danger">
             {% for error in form.email.errors %}
@@ -43,7 +43,7 @@
           {% endif %}
         </div>
         <div class="form-group">
-          {{ form.password(placeholder="Confirm",  class="form-control" )}}
+          {{ form.confirm(placeholder="Repeat Password",  class="form-control" )}}
           {% if form.confirm.errors %}
           <div class="alert alert-danger">
             {% for error in form.confirm.errors %}

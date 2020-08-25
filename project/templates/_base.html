@@ -12,14 +12,12 @@
 </head>
 <body >
 
-
-
     {% for message in get_flashed_messages() %}
-      <div class="alert alert-success text-center">{{ message }}</div>
+      <div class="alert alert-success text-center" id="alert">{{ message }}</div>
     {% endfor %}
 
     {% if error %}
-      <div class="alert alert-danger text-center"><strong>Error: </strong>{{error}}</div>
+      <div class="alert alert-danger text-center"><strong>Error: </strong>{{ error }}</div>
     {% endif %}
 
     <div class="">

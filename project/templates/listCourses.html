@@ -6,12 +6,6 @@
      <span class="navbar-toggler-icon"></span>
  </button>
  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-   <!--<div class="navbar-nav">
-     <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-     <a class="nav-item nav-link" href="#">Features</a>
-     <a class="nav-item nav-link" href="#">Pricing</a>
-     <a class="nav-item nav-link disabled" href="#">Disabled</a>
-   </div>-->
    <ul class='nav navbar-nav navbar-right'>
      {% if not session.logged_in %}
       <a class='nav-item nav-link' href="{{url_for('users.register')}}">Signup</a></li>
@@ -21,12 +15,6 @@
      {% endif %}
    </ul>
  </div>
-
- <!--<form class="form-inline" action="#" method="post">
-   <input class="form-control mr-sm-2" type="search" placeholder="Buscar curso" aria-lable="Buscar" name="" value="">
-   <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="button">Buscar</button>
- </form>-->
-
 </nav>
 
 
@@ -35,22 +23,18 @@
 
 
   <div class="card-columns courses-list text-center">
+    {% for course in courses %}
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="static/images/courses-linux-thumbnail.png" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Linux System Administration</h5>
-        <!-- <p class="card-text">Segundo curso da Nova Formação Linux,
-        onde o aluno aprenderá como administrar o sistema Linux,
-        trabalhando na linha de comando com Shell Script e banco de dados,
-        além do gerenciamento de pacotes, processos, redes, usuários,
-          servidor NTP e Logs com soluções de Cloud Computing e Container com Docker.</p> -->
+        <h5 class="card-title">{{course.name}}</h5>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><span class="fa fa-id-card-o"></span>  Hector Vido</li>
-        <li class="list-group-item"><span class="fa fa-clock-o"></span>  40h</li>
+        <li class="list-group-item"><span class="fa fa-clock-o"></span>  {{course.duration}} horas </li>
         <li class="list-group-item"><span class="fa fa-calendar"></span>  10/10/2020 - 14/10/2020</li>
       </ul>
     </div>  <!-- Ending courses-list content -->
-
+    {% endfor %}
+  </div>
 
 {% endblock %}
