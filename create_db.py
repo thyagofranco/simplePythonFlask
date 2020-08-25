@@ -1,12 +1,10 @@
-from project import engine,Base
-from project.models import Courses, Instructors, Classes, Users
-from datetime import date
-from sqlalchemy.orm import sessionmaker
+from project import db,app
+from sqlalchemy_utils.functions import database_exists,create_database,database_exists
 
-#db.create_all()
-Base.metadata.create_all(engine)
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
-session.add(Courses('CICD-Integração e Entrega Contínua',24))
-session.commit()
+if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
+  create_database(app.config['SQLALCHEMY_DATABASE_URI'])
+
+db.init_app(app)
+db.create_all()
+db.session.commit()
