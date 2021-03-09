@@ -3,11 +3,18 @@ version: '2'
 services:
   web:
     container_name: simplePythonFlask
-    image: simple/simple-python-flask
+    image: simple-python-flask
     ports:
       - 5000:5000
     depends_on:
       - 'mariadb'
+
+  web_initiate_db:
+    container_name: simple-python-flask_init_db
+    image: simple-python-flask
+    entrypoint: ["python3","create_db.py"]
+    depends_on:
+    - 'mariadb'
 
   mariadb:
     container_name: mariadb
