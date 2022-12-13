@@ -11,3 +11,11 @@ spec:
   storageClassName: local-storage
   local:
     path: /home/vagrant/mariadb-data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - k3s
