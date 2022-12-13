@@ -33,7 +33,7 @@ spec:
               name: mariadb-data
       restartPolicy: Always
       volumes:
-        - name: mariadb-data-pvc
+        - name: mariadb-data
           persistentVolumeClaim:
             claimName: mariadb-data-pvc
 status: {}
