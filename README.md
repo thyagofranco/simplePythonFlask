@@ -6,3 +6,17 @@ Propose of this app is:
 - Have UAT (Selenium)
 - Run throw the CI process with Jenkins
 
+Manifest kuberentes:
+
+```
+
+manifest
+├── mariadb-data-persistentvolumeclaim.yaml
+├── mariadb-data-persistentvolume.yaml
+├── mariadb-deployment.yaml
+├── mariadb-service.yaml
+├── web-deployment.yaml
+├── web-initiate-db-deployment.yaml
+└── web-service.yaml
+
+```
