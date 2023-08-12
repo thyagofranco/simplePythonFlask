@@ -1,0 +1,35 @@
+pipeline {
+  options {
+    timestamps()
+    timeout(time: 30, unit: 'MINUTES')
+  }
+  agent any
+
+  stages {
+    stage('Clone do gitea') {
+      steps {
+        sh 'git clone http://192.168.56.10:3000/thyago/simplePythonFlask.git'
+      }
+
+    }
+
+    stage('Docker build do gitea') {
+      steps {
+        sh 'docker build -t simplepythonflask -f simplePythonFlask/Dockerfile simplePythonFlask'
+      }
+    }
+  }
+
+  post {
+    always {
+      echo "Pipeline finalizado."
+      sh 'rm -rf simplePythonFlask'
+    }
+    success {
+      echo "Pipeline finalizado com Sucesso"
+    }
+    failure {
+      echo "Pipeline finalizado com Falha"
+    }
+  }
+}
