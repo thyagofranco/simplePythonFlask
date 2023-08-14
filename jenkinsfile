@@ -24,7 +24,7 @@ pipeline {
     stage('Docker build do gitea') {
       steps {
         sh 'docker build -t ${CONTAINER_IMAGE} -f simplePythonFlask/Dockerfile simplePythonFlask'
-        sh 'docker tag "${CONTAINER_IMAGE}" "${NEXUS_REPOSITORY}:${CONTAINER_IMAGE}"'
+        sh 'docker tag "${CONTAINER_IMAGE}" "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"'
       }
     }
 
@@ -32,7 +32,7 @@ pipeline {
       steps{
             script{
               docker.withRegistry("${DOCKER_REGISTRY}", 'e232d957-1939-498c-92d2-9dac6ff8b043'){
-              def imageToPush = "${NEXUS_REPOSITORY}:${CONTAINER_IMAGE}"
+              def imageToPush = "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"
               imageToPush.push()
             }   
            }
