@@ -26,6 +26,16 @@ pipeline {
         sh 'docker build -t simplepythonflask -f simplePythonFlask/Dockerfile simplePythonFlask'
       }
     }
+
+    stage('Nexus - Saving Artifact'){
+      steps{
+            script{
+              docker.withRegistry("${DOCKER_REGISTRY}", 'e232d957-1939-498c-92d2-9dac6ff8b043'){
+              image.push()
+            }   
+           }
+         }
+      }
   }
 
   post {
