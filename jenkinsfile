@@ -1,4 +1,12 @@
 pipeline {
+  environment {
+    IMAGE_NAME="course_catalog"
+    IMAGE_TAG="0.${BUILD_ID}"
+    CONTAINER_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
+    HTTP_PROTOCOL="http://"
+    NEXUS_REPOSITORY="192.168.56.20:8082"
+    DOCKER_REGISTRY="${HTTP_PROTOCOL}${NEXUS_REPOSITORY}"
+  }
   options {
     timestamps()
     timeout(time: 30, unit: 'MINUTES')
