@@ -20,13 +20,41 @@ pipeline {
       }
 
     }
-
+    
     stage('Docker build do gitea') {
       steps {
         sh 'docker build -t ${CONTAINER_IMAGE} -f simplePythonFlask/Dockerfile simplePythonFlask'
         sh 'docker tag "${CONTAINER_IMAGE}" "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"'
       }
     }
+
+      stage('Unit Testing'){
+          steps{
+            sh 'docker run --rm -tdi --name unit "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"'
+            sh 'sleep 5'
+            sh 'docker exec -t unit nosetests --with-xunit --with-coverage --cover-package=project test_users.py'
+            sh 'docker cp unit:/courseCatalog/nosetests.xml .'
+            sh 'docker stop unit'
+         }
+      }
+ 
+  stage('Gather test'){
+      steps {
+        junit 'nosetests.xml'
+      }
+    }
+ 
+  stage('SonarQube Analysis'){
+        steps{
+          script{
+            def sonarScannerPath = tool 'SonarScanner'
+            withSonarQubeEnv('SonarQube'){
+            sh "${sonarScannerPath}/bin/sonar-scanner \
+            -Dsonar.projectKey=courseCatalog -Dsonar.sources=."
+        }
+      }
+    }
+  }
 
     stage('Nexus - Saving Artifact'){
       steps{
@@ -49,6 +77,7 @@ pipeline {
     }
     failure {
       echo "Pipeline finalizado com Falha"
+       sh   "docker image rm unit"
     }
   }
 }
