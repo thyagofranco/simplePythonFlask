@@ -1,0 +1,83 @@
+pipeline {
+  environment {
+    IMAGE_NAME="course_catalog"
+    IMAGE_TAG="0.${BUILD_ID}"
+    CONTAINER_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
+    HTTP_PROTOCOL="http://"
+    NEXUS_REPOSITORY="192.168.56.20:8082"
+    DOCKER_REGISTRY="${HTTP_PROTOCOL}${NEXUS_REPOSITORY}"
+  }
+  options {
+    timestamps()
+    timeout(time: 30, unit: 'MINUTES')
+  }
+  agent any
+
+  stages {
+    stage('Clone do gitea') {
+      steps {
+        sh 'git clone http://192.168.56.10:3000/thyago/simplePythonFlask.git'
+      }
+
+    }
+    
+    stage('Docker build do gitea') {
+      steps {
+        sh 'docker build -t ${CONTAINER_IMAGE} -f simplePythonFlask/Dockerfile simplePythonFlask'
+        sh 'docker tag "${CONTAINER_IMAGE}" "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"'
+      }
+    }
+
+      stage('Unit Testing'){
+          steps{
+            sh 'docker run --rm -tdi --name unit "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"'
+            sh 'sleep 5'
+            sh 'docker exec -t unit nosetests --with-xunit --with-coverage --cover-package=project test_users.py'
+            sh 'docker cp unit:/courseCatalog/nosetests.xml .'
+            sh 'docker stop unit'
+         }
+      }
+ 
+  stage('Gather test'){
+      steps {
+        junit 'nosetests.xml'
+      }
+    }
+ 
+  stage('SonarQube Analysis'){
+        steps{
+          script{
+            def sonarScannerPath = tool 'SonarScanner'
+            withSonarQubeEnv('SonarQube'){
+            sh "${sonarScannerPath}/bin/sonar-scanner \
+            -Dsonar.projectKey=courseCatalog -Dsonar.sources=."
+        }
+      }
+    }
+  }
+
+    stage('Nexus - Saving Artifact'){
+      steps{
+            script{
+              docker.withRegistry("${DOCKER_REGISTRY}", 'e232d957-1939-498c-92d2-9dac6ff8b043'){
+              sh 'docker push "${NEXUS_REPOSITORY}/${CONTAINER_IMAGE}"'
+            }   
+           }
+         }
+      }
+  }
+
+  post {
+    always {
+      echo "Pipeline finalizado."
+      sh 'rm -rf simplePythonFlask'
+    }
+    success {
+      echo "Pipeline finalizado com Sucesso"
+    }
+    failure {
+      echo "Pipeline finalizado com Falha"
+       sh   "docker image rm unit"
+    }
+  }
+}
